@@ -2,7 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Bookmark, ExternalLink } from "lucide-react";
+import { Calendar, Bookmark, ExternalLink, Play } from "lucide-react";
 import { Episode } from "@/data/episodes";
 
 interface EpisodeCardProps {
@@ -50,15 +50,26 @@ export const EpisodeCard = ({ episode }: EpisodeCardProps) => {
       </CardHeader>
       <CardContent>
         <p className="text-gray-300 leading-relaxed mb-4">{episode.synopsis}</p>
-        <Button 
-          variant="outline" 
-          size="sm"
-          className="bg-blue-900 hover:bg-blue-800 text-blue-200 border-blue-600"
-          onClick={() => window.open(episode.link, '_blank')}
-        >
-          <ExternalLink className="w-4 h-4 mr-2" />
-          View on Wiki
-        </Button>
+        <div className="flex gap-2 flex-wrap">
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="bg-green-900 hover:bg-green-800 text-green-200 border-green-600"
+            onClick={() => window.open(episode.watchLink, '_blank')}
+          >
+            <Play className="w-4 h-4 mr-2" />
+            Watch Episode
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="bg-blue-900 hover:bg-blue-800 text-blue-200 border-blue-600"
+            onClick={() => window.open(episode.link, '_blank')}
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            View on Wiki
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

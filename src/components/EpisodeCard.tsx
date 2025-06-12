@@ -1,7 +1,8 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Bookmark } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, Bookmark, ExternalLink } from "lucide-react";
 import { Episode } from "@/data/episodes";
 
 interface EpisodeCardProps {
@@ -48,7 +49,16 @@ export const EpisodeCard = ({ episode }: EpisodeCardProps) => {
         )}
       </CardHeader>
       <CardContent>
-        <p className="text-gray-300 leading-relaxed">{episode.synopsis}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{episode.synopsis}</p>
+        <Button 
+          variant="outline" 
+          size="sm"
+          className="bg-blue-900 hover:bg-blue-800 text-blue-200 border-blue-600"
+          onClick={() => window.open(episode.link, '_blank')}
+        >
+          <ExternalLink className="w-4 h-4 mr-2" />
+          View on Wiki
+        </Button>
       </CardContent>
     </Card>
   );

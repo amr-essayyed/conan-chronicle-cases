@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { EpisodeCard } from "@/components/EpisodeCard";
 import { EpisodeFilter } from "@/components/EpisodeFilter";
@@ -8,7 +7,7 @@ import { Eye, Clock, BookOpen } from "lucide-react";
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [typeFilter, setTypeFilter] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("manga");
 
   const filteredEpisodes = useMemo(() => {
     return episodes.filter(episode => {

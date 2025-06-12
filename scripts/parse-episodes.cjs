@@ -3,7 +3,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 
 // Read the source HTML file
-const html = fs.readFileSync(path.join(__dirname, '../src/data/page.txt'), 'utf8');
+const html = fs.readFileSync(path.join(__dirname, '../src/data/page.html'), 'utf8');
 const $ = cheerio.load(html);
 
 const episodes = [];
@@ -17,6 +17,7 @@ $('table.wikitable tbody tr').each((i, row) => {
   const jpnNumber = $(cells[0]).text().trim();
   const intNumber = $(cells[1]).text().trim();
   const title = $(cells[2]).text().trim();
+  const link = $(cells[2]).find('a').attr('href');
   const airDate = $(cells[3]).text().trim();
   const mangaSource = $(cells[6]).text().trim();
 
@@ -34,8 +35,8 @@ $('table.wikitable tbody tr').each((i, row) => {
     airDate: formatDate(airDate),
     type: type,
     synopsis: '', // We'll need to get this from another source
-    link: `https://www.detectiveconanworld.com/wiki/${encodeURIComponent(title.replace(/\s+/g, '_'))}`,
-    watchLink: `https://aniwatchtv.to/watch/case-closed-${parseInt(jpnNumber)}?ep=${138372 + parseInt(jpnNumber)}`
+    link: `https://www.detectiveconanworld.com${link}`,
+    watchLink: `https://aniwatchtv.to/watch/case-closed-323?ep=${6222 + parseInt(jpnNumber)}`
   };
 
   episodes.push(episode);
